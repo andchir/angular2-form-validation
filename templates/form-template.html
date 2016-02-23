@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-8">
+
+        <form class="form-horizontal" [ngFormModel]="form">
+            <div class="form-group" [ngClass]="{'has-error': (form.controls.name.dirty || submitted) && !form.controls.name.valid}">
+                <label for="formExampleFieldName" class="col-sm-4 control-label">Name</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="formExampleFieldName" ngControl="name">
+                    <span *ngIf="(form.controls.name.dirty || submitted) && !form.controls.name.valid" class="help-block text-danger">
+                        <span *ngIf="form.controls.name.errors.required">The field is required.</span>
+                        <span *ngIf="form.controls.name.errors.minlength">Your name needs to be at least 4 characters.</span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': (form.controls.email.dirty || submitted) && !form.controls.email.valid}">
+                <label for="formExampleFieldEmail" class="col-sm-4 control-label">Email</label>
+                <div class="col-sm-8">
+                    <input type="email" class="form-control" id="formExampleFieldEmail" ngControl="email">
+                    <span *ngIf="(form.controls.email.dirty || submitted) && !form.controls.email.valid" class="help-block text-danger">
+                        <span *ngIf="form.controls.email.errors.required">The field is required.</span>
+                        <span *ngIf="form.controls.email.errors.email">Invalid e-mail address.</span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group"  [ngClass]="{'has-error': (form.controls.address.dirty || submitted) && !form.controls.address.valid}">
+                <label for="formExampleFieldAddress" class="col-sm-4 control-label">Address</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="formExampleFieldAddress" ngControl="address">
+                    <span *ngIf="(form.controls.address.dirty || submitted) && !form.controls.address.valid" class="help-block text-danger">
+                        <span *ngIf="form.controls.address.errors.required">The field is required.</span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-8">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Option 1
+                        </label>
+                        &nbsp;
+                        <label>
+                            <input type="checkbox"> Option 2
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-8">
+                    <button type="submit" class="btn btn-default" (click)="submitData()">Submit</button>
+                </div>
+            </div>
+        </form>
+
+        <pre>{{diagnostic}}</pre>
+
+    </div>
+</div>

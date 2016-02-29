@@ -26,11 +26,29 @@ System.register(['angular2/core', 'angular2/common', './customValidators'], func
                 function MyFormComponent(builder) {
                     this.builder = builder;
                     this.submitted = false;
-                    this.form = builder.group({
-                        name: ['', common_1.Validators.compose([common_1.Validators.required, common_1.Validators.minLength(4)])],
-                        email: ['', common_1.Validators.compose([common_1.Validators.required, customValidators_1.CustomValidators.email])],
-                        address: ['', common_1.Validators.required]
+                    this.form = new common_1.ControlGroup({
+                        name: new common_1.Control('', common_1.Validators.compose([
+                            common_1.Validators.required,
+                            common_1.Validators.minLength(4)
+                        ])),
+                        email: new common_1.Control('', common_1.Validators.compose([
+                            common_1.Validators.required,
+                            customValidators_1.CustomValidators.email
+                        ])),
+                        gender: new common_1.Control('', common_1.Validators.compose([
+                            common_1.Validators.required,
+                            function (control) { return customValidators_1.CustomValidators.livr(control, { one_of: ['male', 'female'] }); }
+                        ])),
+                        address: new common_1.Control('', common_1.Validators.compose([
+                            common_1.Validators.required
+                        ]))
                     });
+                    /*
+                    this.form = builder.group({
+                        name: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+                        email: ['', Validators.compose([Validators.required, CustomValidators.email])],
+                        address: ['', Validators.required]
+                    });*/
                 }
                 Object.defineProperty(MyFormComponent.prototype, "diagnostic", {
                     get: function () {

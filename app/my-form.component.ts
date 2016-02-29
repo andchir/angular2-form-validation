@@ -15,11 +15,30 @@ export class MyFormComponent {
 
     constructor(private builder: FormBuilder) {
 
+        this.form = new ControlGroup({
+            name: new Control('', Validators.compose([
+                Validators.required,
+                Validators.minLength(4)
+            ])),
+            email: new Control('', Validators.compose([
+                Validators.required,
+                CustomValidators.email
+            ])),
+            gender: new Control('', Validators.compose([
+                Validators.required,
+                (control: Control) => CustomValidators.livr(control, {one_of: ['male', 'female']})
+            ])),
+            address: new Control('', Validators.compose([
+                Validators.required
+            ]))
+        });
+
+        /*
         this.form = builder.group({
             name: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
             email: ['', Validators.compose([Validators.required, CustomValidators.email])],
             address: ['', Validators.required]
-        });
+        });*/
     }
 
     get diagnostic() {
